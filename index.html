@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARAFINA - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- Photo de couverture -->
+    <header class="hero">
+        <div class="overlay">
+            <img src="logo-sarafina.jpg" alt="Logo SARAFINA" class="hero-logo">
+            <h1 class="hero-title">Bienvenue chez SARAFINA</h1>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <section id="menu" class="menu-section">
+            <h2>Menu</h2>
+
+            <!-- Section Plats -->
+            <h3>Plats</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="burger.jpg" alt="Burger">
+                    <h4>HAMBURGER</h4>
+                    <p>2500 FCFA</p>
+                    <button class="add-to-cart" data-image="burger.jpg">Ajouter au panier</button>
+                </div>
+                <div class="menu-item">
+                    <img src="poulet-roti.png" alt="Poulet Rôti">
+                    <h4>POULET ROTI</h4>
+                    <p>5000 FCFA</p>
+                    <button class="add-to-cart" data-image="poulet-roti.png">Ajouter au panier</button>
+                </div>
+                <div class="menu-item">
+                    <img src="bolognaise.png" alt="Pâtes">
+                    <h4>PÂTES BOLOGNAISE</h4>
+                    <p>4500 FCFA</p>
+                    <button class="add-to-cart" data-image="bolognaise.png">Ajouter au panier</button>
+                </div>
+                <div class="menu-item">
+                    <img src="riz.jpg" alt="Riz">
+                    <h4>RIZ</h4>
+                    <p>4000 FCFA</p>
+                    <button class="add-to-cart" data-image="riz.jpg">Ajouter au panier</button>
+                </div>
+            </div>
+
+            <!-- Section Boissons -->
+            <h3>Boissons</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="kirene.jpg" alt="Eau Kirene">
+                    <h4>EAU KIRENE</h4>
+                    <p>1000 FCFA</p>
+                    <button class="add-to-cart" data-image="kirene.jpg">Ajouter au panier</button>
+                </div>
+                <div class="menu-item">
+                    <img src="jus-gingembre.jpg" alt="Jus Gingembre">
+                    <h4>JUS GINGEMBRE</h4>
+                    <p>1500 FCFA</p>
+                    <button class="add-to-cart" data-image="jus-gingembre.jpg">Ajouter au panier</button>
+                </div>
+                <div class="menu-item">
+                    <img src="smoothie.jpg" alt="Smoothie">
+                    <h4>SMOOTHIE MANGUE</h4>
+                    <p>2000 FCFA</p>
+                    <button class="add-to-cart" data-image="smoothie.jpg">Ajouter au panier</button>
+                </div>
+                <div class="menu-item">
+                    <img src="coca.jpg" alt="Coca Cola">
+                    <h4>COCA COLA</h4>
+                    <p>1200 FCFA</p>
+                    <button class="add-to-cart" data-image="coca.jpg">Ajouter au panier</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Icône du panier flottante -->
+    <div id="cart-icon" class="cart-icon">
+        <img src="logo-panier.png" alt="Panier">
+        <span id="cart-count">0</span>
+    </div>
+
+    <!-- Modale du panier -->
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h4>Votre Panier</h4>
+            <ul id="cart-items">
+                <!-- Les articles ajoutés au panier s'affichent ici -->
+            </ul>
+            <p id="total-price">Total : 0 FCFA</p>
+            <button id="checkout">Commander</button>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <footer id="footer">
+        <p>&copy; 2024 SARAFINA. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Caissière</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        /* Tableau */
+        .orders {
+            margin: 20px auto;
+            max-width: 90%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .orders th {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .orders td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .orders tr:last-child td {
+            border-bottom: none;
+        }
+
+        .orders tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .orders .empty {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #777;
+            padding: 20px 0;
+        }
+
+        /* Bouton de rafraîchissement */
+        .refresh-button {
+            display: block;
+            margin: 20px auto;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animation de chargement */
+        .loading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tableau des Commandes</h1>
+    
+    <!-- Bouton de rafraîchissement manuel -->
+    <button class="refresh-button" onclick="fetchOrders()">Rafraîchir</button>
+    
+    <!-- Tableau des commandes -->
+    <table class="orders" id="orders-table">
+        <thead>
+            <tr>
+                <th>Numéro de Table</th>
+                <th>Articles</th>
+                <th>Total (FCFA)</th>
+            </tr>
+        </thead>
+        <tbody id="orders-body">
+            <tr class="empty-row">
+                <td colspan="3" class="empty">Chargement des commandes...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function fetchOrders() {
+            const ordersBody = document.getElementById('orders-body');
+            ordersBody.innerHTML = '<tr class="empty-row"><td colspan="3" class="loading">Chargement des commandes...</td></tr>';
+
+            // Simuler une API avec des données factices
+            setTimeout(() => {
+                const data = [
+                    {
+                        tableNumber: 5,
+                        items: [
+                            { name: "Hamburger", quantity: 2, totalPrice: 5000 },
+                            { name: "Coca Cola", quantity: 1, totalPrice: 1200 }
+                        ],
+                        total: 6200
+                    },
+                    {
+                        tableNumber: 3,
+                        items: [
+                            { name: "Poulet Rôti", quantity: 1, totalPrice: 5000 },
+                            { name: "Eau Kirene", quantity: 2, totalPrice: 2000 }
+                        ],
+                        total: 7000
+                    }
+                ];
+
+                ordersBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    ordersBody.innerHTML = '<tr class="empty-row"><td colspan="3" class="empty">Aucune commande pour le moment</td></tr>';
+                    return;
+                }
+
+                data.forEach(order => {
+                    const row = document.createElement('tr');
+
+                    const tableCell = document.createElement('td');
+                    tableCell.textContent = `Table ${order.tableNumber}`;
+
+                    const itemsCell = document.createElement('td');
+                    itemsCell.innerHTML = order.items.map(item => `
+                        <div>${item.quantity} x ${item.name} (${item.totalPrice} FCFA)</div>
+                    `).join('');
+
+                    const totalCell = document.createElement('td');
+                    totalCell.textContent = `${order.total} FCFA`;
+
+                    row.appendChild(tableCell);
+                    row.appendChild(itemsCell);
+                    row.appendChild(totalCell);
+
+                    ordersBody.appendChild(row);
+                });
+            }, 1000);
+        }
+
+        // Rafraîchissement automatique toutes les 5 secondes
+        setInterval(fetchOrders, 5000);
+        fetchOrders();
+    </script>
+</body>
+</html>
